@@ -11,18 +11,22 @@ module.exports = {
     devServer: {
         static: './dist',
     },
-    // plugins: [
-    //     new HtmlWebpackPlugin({
-    //         title: 'Development',
-    //     }),
-    // ],
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
-        //clean: true,
     },
+    module: {
+        rules: [
+            {
+                test: /\.css$/i,
 
-    optimization: {
-        runtimeChunk: 'single',
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+
+                type: 'asset/resource',
+            },
+        ],
     },
 };
